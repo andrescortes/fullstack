@@ -1,5 +1,3 @@
-from tabnanny import verbose
-
 from django.db import models
 from django.contrib.auth.models import (
     BaseUserManager,
@@ -9,10 +7,10 @@ from django.contrib.auth.models import (
 
 from simple_history.models import HistoricalRecords
 
-# Create your models here.
-
 
 class UserManager(BaseUserManager):
+    """Custom user auth for app"""
+
     def _create_user(
         self,
         username,
@@ -38,6 +36,7 @@ class UserManager(BaseUserManager):
         user.save(using=self.db)
 
     def create_user(self, username, email, name, last_name, **extra_fields):
+        """Function to create an user"""
         return self._create_user(
             username, email, name, last_name, password=None, **extra_fields
         )
@@ -45,12 +44,15 @@ class UserManager(BaseUserManager):
     def create_superuser(
         self, username, email, name, last_name, password=None, **extra_fields
     ):
+        """Function to create a superuser"""
         return self._create_user(
             username, email, name, last_name, password, True, True, **extra_fields
         )
 
 
 class User(AbstractBaseUser, PermissionsMixin):
+    """Custom user model for the ecommerce application."""
+
     username = models.CharField(max_length=255, unique=True)
     email = models.EmailField("Email", max_length=255, unique=True)
     name = models.CharField("Name", max_length=255, blank=True, null=True)
@@ -64,6 +66,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     objects = UserManager()
 
     class Meta:
+        """Metadata for User class"""
+
         verbose_name = "User"
         verbose_name_plural = "Users"
 
