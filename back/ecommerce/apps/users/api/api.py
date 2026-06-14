@@ -21,12 +21,13 @@ def user_api_view(request: Request):
     if method == "POST":
         user_serializer = UserSerializer(data=request.data)
 
-        if user_serializer.is_valid() is False:
+        if not user_serializer.is_valid():
             return Response(data=user_serializer.errors, status=400)
 
         user_serializer.save()
         data = user_serializer.data
         return Response(data=data, status=201)
+    return None
 
 
 @api_view(["GET", "PUT", "DELETE"])
@@ -54,7 +55,7 @@ def user_detail_api_view(req: Request, pk: int):
 
     if method == "PUT":
         user_serializer = UserSerializer(user, data=req.data)
-        if user_serializer.is_valid() is False:
+        if not user_serializer.is_valid():
             return Response(data={"error": UserSerializer.errors}, status=400)
 
         user_serializer.save()
@@ -63,3 +64,4 @@ def user_detail_api_view(req: Request, pk: int):
     if method == "DELETE":
         user.delete()
         return Response(data={"message": f"User with id: {pk} was deleted"}, status=204)
+    return None
