@@ -1,6 +1,7 @@
-from rest_framework.response import Response
-from rest_framework.request import Request
 from rest_framework.decorators import api_view
+from rest_framework.request import Request
+from rest_framework.response import Response
+
 from apps.users.api.serializers import UserSerializer
 from apps.users.models import User
 

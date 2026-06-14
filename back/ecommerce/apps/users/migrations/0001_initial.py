@@ -7,7 +7,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
     dependencies = [
@@ -21,16 +20,24 @@ class Migration(migrations.Migration):
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('password', models.CharField(max_length=128, verbose_name='password')),
                 ('last_login', models.DateTimeField(blank=True, null=True, verbose_name='last login')),
-                ('is_superuser', models.BooleanField(default=False, help_text='Designates that this user has all permissions without explicitly assigning them.', verbose_name='superuser status')),
+                ('is_superuser', models.BooleanField(default=False,
+                                                     help_text='Designates that this user has all permissions without explicitly assigning them.',
+                                                     verbose_name='superuser status')),
                 ('username', models.CharField(max_length=255, unique=True)),
                 ('email', models.EmailField(max_length=255, unique=True, verbose_name='Email')),
                 ('name', models.CharField(blank=True, max_length=255, null=True, verbose_name='Name')),
                 ('last_name', models.CharField(blank=True, max_length=255, null=True, verbose_name='Lastname')),
-                ('image', models.ImageField(blank=True, max_length=255, null=True, upload_to='profile/', verbose_name='Image profile')),
+                ('image', models.ImageField(blank=True, max_length=255, null=True, upload_to='profile/',
+                                            verbose_name='Image profile')),
                 ('is_active', models.BooleanField(default=True)),
                 ('is_staff', models.BooleanField(default=False)),
-                ('groups', models.ManyToManyField(blank=True, help_text='The groups this user belongs to. A user will get all permissions granted to each of their groups.', related_name='user_set', related_query_name='user', to='auth.group', verbose_name='groups')),
-                ('user_permissions', models.ManyToManyField(blank=True, help_text='Specific permissions for this user.', related_name='user_set', related_query_name='user', to='auth.permission', verbose_name='user permissions')),
+                ('groups', models.ManyToManyField(blank=True,
+                                                  help_text='The groups this user belongs to. A user will get all permissions granted to each of their groups.',
+                                                  related_name='user_set', related_query_name='user', to='auth.group',
+                                                  verbose_name='groups')),
+                ('user_permissions', models.ManyToManyField(blank=True, help_text='Specific permissions for this user.',
+                                                            related_name='user_set', related_query_name='user',
+                                                            to='auth.permission', verbose_name='user permissions')),
             ],
             options={
                 'verbose_name': 'User',
@@ -43,7 +50,9 @@ class Migration(migrations.Migration):
                 ('id', models.BigIntegerField(auto_created=True, blank=True, db_index=True, verbose_name='ID')),
                 ('password', models.CharField(max_length=128, verbose_name='password')),
                 ('last_login', models.DateTimeField(blank=True, null=True, verbose_name='last login')),
-                ('is_superuser', models.BooleanField(default=False, help_text='Designates that this user has all permissions without explicitly assigning them.', verbose_name='superuser status')),
+                ('is_superuser', models.BooleanField(default=False,
+                                                     help_text='Designates that this user has all permissions without explicitly assigning them.',
+                                                     verbose_name='superuser status')),
                 ('username', models.CharField(db_index=True, max_length=255)),
                 ('email', models.EmailField(db_index=True, max_length=255, verbose_name='Email')),
                 ('name', models.CharField(blank=True, max_length=255, null=True, verbose_name='Name')),
@@ -54,8 +63,11 @@ class Migration(migrations.Migration):
                 ('history_id', models.AutoField(primary_key=True, serialize=False)),
                 ('history_date', models.DateTimeField(db_index=True)),
                 ('history_change_reason', models.CharField(max_length=100, null=True)),
-                ('history_type', models.CharField(choices=[('+', 'Created'), ('~', 'Changed'), ('-', 'Deleted')], max_length=1)),
-                ('history_user', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='+', to=settings.AUTH_USER_MODEL)),
+                ('history_type',
+                 models.CharField(choices=[('+', 'Created'), ('~', 'Changed'), ('-', 'Deleted')], max_length=1)),
+                ('history_user',
+                 models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='+',
+                                   to=settings.AUTH_USER_MODEL)),
             ],
             options={
                 'verbose_name': 'historical User',

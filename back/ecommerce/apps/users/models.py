@@ -1,10 +1,9 @@
-from django.db import models
 from django.contrib.auth.models import (
     BaseUserManager,
     AbstractBaseUser,
     PermissionsMixin,
 )
-
+from django.db import models
 from simple_history.models import HistoricalRecords
 
 
@@ -12,15 +11,15 @@ class UserManager(BaseUserManager):
     """Custom user auth for app"""
 
     def _create_user(
-        self,
-        username,
-        email,
-        name,
-        last_name,
-        password,
-        is_staff,
-        is_superuser,
-        **extra_fields,
+            self,
+            username,
+            email,
+            name,
+            last_name,
+            password,
+            is_staff,
+            is_superuser,
+            **extra_fields,
     ):
         user = self.model(
             name=name,
@@ -36,13 +35,13 @@ class UserManager(BaseUserManager):
         user.save(using=self.db)
 
     def create_user(self, username, email, name, last_name, **extra_fields):
-        """Function to create an user"""
+        """Function to create a user"""
         return self._create_user(
             username, email, name, last_name, password=None, **extra_fields
         )
 
     def create_superuser(
-        self, username, email, name, last_name, password=None, **extra_fields
+            self, username, email, name, last_name, password=None, **extra_fields
     ):
         """Function to create a superuser"""
         return self._create_user(
