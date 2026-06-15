@@ -1,6 +1,11 @@
 asgiref==3.11.1
 django==6.0.6
 django-simple-history==3.11.0
+django-stubs==6.0.5
+django-stubs-ext==6.0.5
 djangorestframework==3.17.1
+djangorestframework-stubs==3.17.0
 pillow==12.2.0
 sqlparse==0.5.5
+types-pyyaml==6.0.12.20260518
+typing-extensions==4.15.0

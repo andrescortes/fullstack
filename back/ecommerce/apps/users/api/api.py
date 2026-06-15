@@ -2,7 +2,7 @@ from rest_framework.decorators import api_view
 from rest_framework.request import Request
 from rest_framework.response import Response
 
-from apps.users.api.serializers import UserSerializer
+from apps.users.api.serializers import UserSerializer, UserTestSerializer
 from apps.users.models import User
 
 
@@ -13,6 +13,15 @@ def user_api_view(request: Request):
     method = request.method
     if method == "GET":
         users = User.objects.all()
+        test_data = {
+            "name":"john",
+            "email":"johndoe@test.com",
+        }
+        test_user = UserTestSerializer(data=test_data)
+        if test_user.is_valid():
+            print("user is valid")
+        print(f"errors: {test_user.errors}")
+        print(f"test_user: {test_data}")
         user_serializer = UserSerializer(users, many=True)
         if user_serializer.data is None:
             return Response(data=None, status=204)

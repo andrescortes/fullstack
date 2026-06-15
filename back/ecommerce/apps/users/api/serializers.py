@@ -22,3 +22,22 @@ class UserSerializer(serializers.ModelSerializer):
         #     "objects",
         # ]
         fields = '__all__'
+
+
+class UserTestSerializer(serializers.Serializer):
+    """User test serializer"""
+
+    name = serializers.CharField(max_length=200)
+    email = serializers.EmailField()
+
+    def validate_name(self, value):
+        if "developer" == value:
+            raise serializers.ValidationError("Developer is keyword reserved")
+        return value
+
+    def validate(self, data):
+        return data
+
+    def create(self, validated_data):
+        print(f"validated data: {validated_data}")
+        return User.objects.create(**validated_data)
