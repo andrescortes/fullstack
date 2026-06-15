@@ -14,8 +14,8 @@ def user_api_view(request: Request):
     if method == "GET":
         users = User.objects.all()
         test_data = {
-            "name":"john",
-            "email":"johndoe@test.com",
+            "name": "john",
+            "email": "johndoe@test.com",
         }
         test_user = UserTestSerializer(data=test_data)
         if test_user.is_valid():
@@ -63,7 +63,8 @@ def user_detail_api_view(req: Request, pk: int):
         return Response(data=user_serializer.data, status=200)
 
     if method == "PUT":
-        user_serializer = UserSerializer(user, data=req.data)
+        # user_serializer = UserSerializer(user, data=req.data)
+        user_serializer = UserTestSerializer(user, data=req.data)
         if not user_serializer.is_valid():
             return Response(data={"error": UserSerializer.errors}, status=400)
 
