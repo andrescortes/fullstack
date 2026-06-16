@@ -32,7 +32,7 @@ def user_api_view(request: Request):
 
 @api_view(["GET", "PUT", "DELETE"])
 def user_detail_api_view(req: Request, pk: int):
-    """Retrieve, update and delete an user by id"""
+    """Retrieve, update and delete a user by id"""
 
     method = req.method
     methods = ["GET", "PUT", "DELETE"]
