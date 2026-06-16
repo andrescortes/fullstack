@@ -89,8 +89,8 @@ class Product(BaseModel):
         self.change_by = value
 
     class Meta:
-        verbose_name = 'Indicator'
-        verbose_name_plural = 'Indicators'
+        verbose_name = 'Product'
+        verbose_name_plural = 'Products'
 
     def __str__(self):
-        return f"Discount of the category {self.description}: {self.discount}%"
+        return self.name
