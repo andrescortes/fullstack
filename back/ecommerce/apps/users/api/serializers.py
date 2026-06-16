@@ -23,6 +23,31 @@ class UserSerializer(serializers.ModelSerializer):
         # ]
         fields = '__all__'
 
+    def create(self, validated_data):
+        """override function to create new user from serialized data"""
+
+        user = User(**validated_data)
+        user.set_password(validated_data['password'])
+        user.save()
+        return user
+
+    def update(self, instance, validated_data):
+        """override function to update existing user"""
+
+        user = super().update(instance, validated_data)
+        user.set_password(validated_data['password'])
+        user.save()
+        return user
+
+
+class UserListSerializer(serializers.ModelSerializer):
+    """User list serializer"""
+
+    class Meta:
+        """Metadata for User model"""
+        model = User
+        fields = '__all__'
+
     def to_representation(self, instance):
         data = super().to_representation(instance)
         return {
