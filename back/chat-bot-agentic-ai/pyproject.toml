@@ -1,0 +1,13 @@
+[project]
+name = "chat-bot-agentic-ai"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "accelerate>=1.14.0",
+    "ddgs>=9.14.4",
+    "streamlit>=1.58.0",
+    "torch>=2.12.0",
+    "transformers>=5.12.1",
+]
