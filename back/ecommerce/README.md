@@ -96,3 +96,18 @@ uv run python manage.py makemigrations
 ```shell
 uv run python manage.py migrate
 ```
+
+## Add models to admin site
+
+```text
+add each model in admin.py
+Sample:
+    admin.site.register(Product)
+```
+
+## Create serializers
+```text
+project.apps.products:
+    api:
+        serializers.py
+```
