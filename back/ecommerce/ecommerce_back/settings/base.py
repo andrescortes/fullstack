@@ -40,7 +40,8 @@ BASE_APPS = [
 LOCAL_APPS = [
     'apps.base',
     'apps.products',
-    'apps.users'
+    'apps.users',
+    'apps.chatbot'
 ]
 
 THIRD_APPS = [
