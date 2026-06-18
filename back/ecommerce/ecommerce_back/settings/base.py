@@ -117,3 +117,17 @@ AUTH_USER_MODEL = 'users.User'
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = 'static/'
+
+# logger
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {'verbose': {'format': '{levelname} {message}', 'style': '{'}},
+    'handlers': {
+        'console': {'class': 'logging.StreamHandler', 'formatter': 'verbose'},
+        'file': {'class': 'logging.FileHandler', 'filename': 'drf_api.log', 'formatter': 'verbose'},
+    },
+    'loggers': {
+        'drf_logger': {'handlers': ['console', 'file'], 'level': 'INFO'},
+    },
+}
