@@ -5,9 +5,11 @@ from apps.products.api.views.general_views import (
     IndicatorListAPIView,
     CategoryProductListAPIView
 )
+from apps.products.api.views.product_view import ProductListAPIView
 
 urlpatterns = [
-    path('measure-units', MeasureUnitListAPIView.as_view(), name='measure-unit-list'),
-    path('indicators', IndicatorListAPIView.as_view(), name='indicator-list'),
-    path('category-products', CategoryProductListAPIView.as_view(), name='category-product-list'),
+    path('products', ProductListAPIView.as_view(), name='product-list'),
+    path('products/measure-units', MeasureUnitListAPIView.as_view(), name='measure-unit-list'),
+    path('products/indicators', IndicatorListAPIView.as_view(), name='indicator-list'),
+    path('products/category-products', CategoryProductListAPIView.as_view(), name='category-product-list'),
 ]
